@@ -2,7 +2,7 @@ import intro
 import calcul
 
 # ograniczenie liczby powtórzeń pętli
-liczbaPowtórzeń = 4
+liczbaPowtórzeń = 0
 
 
 def main():
@@ -26,4 +26,4 @@ def main():
         repeat += 1
 
 
-intro.wczytajDane()
+main()

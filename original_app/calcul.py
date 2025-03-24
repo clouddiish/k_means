@@ -1,6 +1,6 @@
-#moduł przechowuje początkową liczbę klastrów,
-#oraz poczatkową pustą listę klastrów i centroidów.
-#UWAGA: wartości poczatkowe zmiennych modułowych
+# moduł przechowuje początkową liczbę klastrów,
+# oraz poczatkową pustą listę klastrów i centroidów.
+# UWAGA: wartości poczatkowe zmiennych modułowych
 #       są dostępne po każdorazowym załadowaniu modułu
 
 import math
@@ -10,18 +10,18 @@ import intro
 liczbaKlastrów = 4
 # poczatkowa liczba klastrów
 klastry = []
-#każdy z klastrów jest listą krotekNormal położonych najbliżej centroidy
+# każdy z klastrów jest listą krotekNormal położonych najbliżej centroidy
 Centroidy = []
 
 
 def test():
-    print('\nLICZBA KLASTRÓW ', liczbaKlastrów)
+    print("\nLICZBA KLASTRÓW ", liczbaKlastrów)
     intro.wczytajDane()
     intro.normalizujDane()
     losujCentroidy()
     wypiszCentroidy()
     przypiszKrotkomNumeryKlastrów()
-    #intro.wypiszKrotkiNormal()
+    # intro.wypiszKrotkiNormal()
     utwórzKlastry()
     wypiszKlastry()
     newCentroidy()
@@ -56,12 +56,12 @@ def losujCentroidy():
 
 
 def wypiszCentroide(centroida):
-    print('%4d %4d %4d %4d %7.3f' % (centroida[0], centroida[1], centroida[2], centroida[3], centroida[4]))
+    print("%4d %4d %4d %4d %7.3f" % (centroida[0], centroida[1], centroida[2], centroida[3], centroida[4]))
 
 
 def wypiszCentroidy():
     # wypisuje do interpretera aktualne wartości wszystkich centroid
-    print('CENTROIDY')
+    print("CENTROIDY")
     for centroida in Centroidy:
         wypiszCentroide(centroida)
 
@@ -101,9 +101,9 @@ def utwórzKlastry():
 
 
 def wypiszKlaster(nrKlastra):
-    print('NUMER KLASTRA ', nrKlastra)
+    print("NUMER KLASTRA ", nrKlastra)
     for krotka in klastry[nrKlastra]:
-        print('%4d %4d %4d %4d %7.3f %4d' % (krotka[0], krotka[1], krotka[2], krotka[3], krotka[4], krotka[5]))
+        print("%4d %4d %4d %4d %7.3f %4d" % (krotka[0], krotka[1], krotka[2], krotka[3], krotka[4], krotka[5]))
 
 
 def wypiszKlastry():
@@ -144,6 +144,6 @@ def newCentroide(klaster):
 
 def newCentroidy():
     Centroidy.clear()
-    print('\nprzesunięto centroidy ------------')
+    print("\nprzesunięto centroidy ------------")
     for nr in range(liczbaKlastrów):
         Centroidy.append(newCentroide(klastry[nr]))

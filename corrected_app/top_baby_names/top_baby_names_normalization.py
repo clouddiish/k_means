@@ -1,21 +1,3 @@
-# moduł przechowuje:
-# oryginalne i znormalizowane krotki danych,
-# słowniki normalizacyjne do zmiennych tekstowych,
-# funkcje wczytywania i wypisywania krotek,
-# funkcję normalizacji danych
-
-
-def test():
-    wczytajDane()
-    # wypiszDane()
-    normalizujDane()
-    wypiszKrotkiNormal()
-
-
-krotkiDane = []
-krotkiNormal = []
-
-# definicje słowników normalizacyjnych dla zmiennych tekstowych
 states = {
     "AK": 2,
     "AL": 4,
@@ -170,45 +152,12 @@ names = {
 }
 
 
-def wczytajDane():
-    # wczytuje dane ze wskazanego pliku tekstowego do listy krotkiDane
-    import csv
-
-    with open("./raw_data/top_baby_names_by_state_midi.txt", "r") as csvfile:
-        csvreader = csv.reader(csvfile)
-        for krotka in csvreader:
-            krotkiDane.append(krotka)
-
-
-def wypiszDane():
-    # wypisuje zawartość listy krotkiDane do interpretera
-    for krotka in krotkiDane:
-        print(krotka[0], " ", krotka[1], " ", krotka[2], "%-10s" % (krotka[3]), "%4s" % krotka[4])
-
-
-def wypiszKrotkiNormal():
-    # wypisuje zawartość listy krotkiNormal do interpretera
-    print("KROTKI NORMAL")
-    for krotka in krotkiNormal:
-        print("%4d %4d %4d %4d %7.3f %4d" % (krotka[0], krotka[1], krotka[2], krotka[3], krotka[4], krotka[5]))
-
-
-def normalizujDane():
-    # normalizuje dane surowe z listy *krotki* i wpisuje je do listy *krotkiNormal*
-    # -1 oznacza, że nie wpisano jeszcze numeru klastra, do którego należy krotka
-    for i in range(len(krotkiDane)):
-        krotka = []
-        first = krotkiDane[i][0]
-        krotka.append(states[first])
-        second = krotkiDane[i][1]
-        krotka.append(sex[second])
-        third = krotkiDane[i][2]
-        result = int(third) - 1910
-        krotka.append(result)
-        forth = krotkiDane[i][3]
-        krotka.append(names[forth])
-        fifth = krotkiDane[i][4]
-        result = 0.02 * int(fifth)
-        krotka.append(result)
-        krotka.append(-1)
-        krotkiNormal.append(krotka)
+def top_baby_names_normalize_row(raw_row: list) -> list:
+    normalized_row = []
+    normalized_row.append(states[raw_row[0]])
+    normalized_row.append(sex[raw_row[1]])
+    normalized_row.append(int(raw_row[2]) - 1910)
+    normalized_row.append(names[raw_row[3]])
+    normalized_row.append(0.02 * int(raw_row[4]))
+    normalized_row.append(-1)
+    return normalized_row
