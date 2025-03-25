@@ -1,7 +1,4 @@
-import math
 from typing import Callable
-
-from corrected_app.utils.logger import logger
 
 
 def get_random_centroids(how_many: int, randomizer_function: Callable[[], list]) -> list:
@@ -15,24 +12,6 @@ def get_random_centroids(how_many: int, randomizer_function: Callable[[], list])
         list: A list of randomly generated centroids.
     """
     return [randomizer_function() for _ in range(how_many)]
-
-
-def get_euclidean_distance(first_point: list, second_point: list, exclude_attributes_ids: list) -> float:
-    """Calculates the Euclidean distance between two points, excluding specified attributes.
-
-    Args:
-        first_point (list): The first data point.
-        second_point (list): The second data point.
-        exclude_attributes_ids (list): Indices of attributes to be excluded from the calculation.
-
-    Returns:
-        float: The Euclidean distance between the two points.
-    """
-    total = 0
-    for i in range(len(first_point)):
-        if i not in exclude_attributes_ids:
-            total += (first_point[i] - second_point[i]) ** 2
-    return math.sqrt(total)
 
 
 def get_closest_centroid_id(
