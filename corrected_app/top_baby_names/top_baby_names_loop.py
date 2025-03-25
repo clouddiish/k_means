@@ -25,7 +25,7 @@ def top_baby_names_loop(
             distance between two points, excluding specified attributes.
 
     Returns:
-        None
+        tuple: Tuple of final clusters and centroids
     """
     raw_data = fetch_raw_data("./raw_data/top_baby_names_by_state_midi.txt")
     normalized_data = normalize_data(raw_data, top_baby_names_normalize_row)

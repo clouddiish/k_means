@@ -3,7 +3,9 @@ from corrected_app.top_baby_names.top_baby_names_loop import top_baby_names_loop
 
 
 def main():
-    clusters, centroids = top_baby_names_loop(4, 4, get_euclidean_distance)
+    clusters, centroids = top_baby_names_loop(
+        no_of_iterations=4, no_of_clusters=4, calculate_distance_function=get_euclidean_distance
+    )
     print(f"FINAL CLUSTERS: {clusters}")
     print(f"FINAL CENTROIDS: {centroids}")
 
