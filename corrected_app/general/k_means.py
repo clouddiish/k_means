@@ -35,13 +35,20 @@ def get_euclidean_distance(first_point: list, second_point: list, exclude_attrib
     return math.sqrt(total)
 
 
-def get_closest_centroid_id(centroids: list, datapoint: list, exclude_attributes_ids: list) -> int:
+def get_closest_centroid_id(
+    centroids: list,
+    datapoint: list,
+    exclude_attributes_ids: list,
+    calculate_distance_function: Callable[[list, list, list], list],
+) -> int:
     """Finds the index of the centroid closest to a given data point.
 
     Args:
         centroids (list): A list of centroid points.
         datapoint (list): A single data point.
         exclude_attributes_ids (list): Indices of attributes to be excluded from distance calculations.
+        calculate_distance_function (Callable[[list, list, list], list]): A function that calculates
+            distance between two points, excluding specified attributes.
 
     Returns:
         int: The index of the closest centroid.
@@ -49,20 +56,27 @@ def get_closest_centroid_id(centroids: list, datapoint: list, exclude_attributes
     min_distance = float("inf")
     min_index = -1
     for i, centroid in enumerate(centroids):
-        distance = get_euclidean_distance(centroid, datapoint, exclude_attributes_ids)
+        distance = calculate_distance_function(centroid, datapoint, exclude_attributes_ids)
         if distance < min_distance:
             min_distance = distance
             min_index = i
     return min_index
 
 
-def get_clusters(centroids: list, datapoints: list, exclude_attributes_ids: list) -> list:
+def get_clusters(
+    centroids: list,
+    datapoints: list,
+    exclude_attributes_ids: list,
+    calculate_distance_function: Callable[[list, list, list], list],
+) -> list:
     """Groups data points into clusters based on their closest centroid.
 
     Args:
         centroids (list): A list of centroids.
         datapoints (list): A list of data points to be clustered.
         exclude_attributes_ids (list): Indices of attributes to be excluded from distance calculations.
+        calculate_distance_function (Callable[[list, list, list], list]): A function that calculates
+            distance between two points, excluding specified attributes.
 
     Returns:
         list: A list of clusters, where each cluster is a list of data points assigned to a centroid.
@@ -70,7 +84,9 @@ def get_clusters(centroids: list, datapoints: list, exclude_attributes_ids: list
     clusters = [[] for _ in centroids]
 
     for datapoint in datapoints:
-        closest_centroid_id = get_closest_centroid_id(centroids, datapoint, exclude_attributes_ids)
+        closest_centroid_id = get_closest_centroid_id(
+            centroids, datapoint, exclude_attributes_ids, calculate_distance_function
+        )
         clusters[closest_centroid_id].append(datapoint)
 
     return clusters

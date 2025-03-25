@@ -168,7 +168,6 @@ def top_baby_names_normalize_row(raw_row: list) -> list:
             - Index 2: Year normalized by subtracting 1910.
             - Index 3: Mapped name value.
             - Index 4: Scaled occurrence value (multiplied by 0.02).
-            - Index 5: Placeholder value (-1).
     """
     normalized_row = []
     normalized_row.append(states[raw_row[0]])
@@ -176,5 +175,4 @@ def top_baby_names_normalize_row(raw_row: list) -> list:
     normalized_row.append(int(raw_row[2]) - 1910)
     normalized_row.append(names[raw_row[3]])
     normalized_row.append(0.02 * int(raw_row[4]))
-    normalized_row.append(-1)
     return normalized_row
