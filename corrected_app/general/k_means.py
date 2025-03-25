@@ -1,6 +1,8 @@
 import math
 from typing import Callable
 
+from corrected_app.utils.logger import logger
+
 
 def get_random_centroids(how_many: int, randomizer_function: Callable[[], list]) -> list:
     return [randomizer_function() for _ in range(how_many)]
@@ -33,3 +35,15 @@ def get_clusters(centroids: list, datapoints: list, exclude_attributes_ids: list
         clusters[closest_centroid_id].append(datapoint)
 
     return clusters
+
+
+def get_new_centroids(
+    clusters: list, find_centroid_function: Callable[[list], list], randomizer_function: Callable[[], list]
+) -> list:
+    new_centroids = []
+    for cluster in clusters:
+        if len(cluster) == 0:
+            new_centroids.append(randomizer_function())
+        else:
+            new_centroids.append(find_centroid_function(cluster))
+    return new_centroids
