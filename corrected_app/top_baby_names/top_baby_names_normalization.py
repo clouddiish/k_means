@@ -153,6 +153,23 @@ names = {
 
 
 def top_baby_names_normalize_row(raw_row: list) -> list:
+    """Normalizes a row of raw baby name data.
+
+    This function converts state, sex, year, name, and occurrence values into a standardized format
+    using predefined mappings and transformations.
+
+    Args:
+        raw_row (list): A list containing raw data for a baby name entry.
+
+    Returns:
+        list: A normalized list where:
+            - Index 0: Mapped state value.
+            - Index 1: Mapped sex value.
+            - Index 2: Year normalized by subtracting 1910.
+            - Index 3: Mapped name value.
+            - Index 4: Scaled occurrence value (multiplied by 0.02).
+            - Index 5: Placeholder value (-1).
+    """
     normalized_row = []
     normalized_row.append(states[raw_row[0]])
     normalized_row.append(sex[raw_row[1]])
