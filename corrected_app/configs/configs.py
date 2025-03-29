@@ -1,0 +1,9 @@
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+PROJECT_ROOT_ABS_FILEPATH = os.getenv("PROJECT_ROOT_ABS_FILEPATH")
+TOP_BABY_NAMES_ABS_FILEPATH = os.getenv("TOP_BABY_NAMES_ABS_FILEPATH")
+HEALTHCARE_NOSHOWS_ABS_FILEPATH = os.getenv("HEALTHCARE_NOSHOWS_ABS_FILEPATH")

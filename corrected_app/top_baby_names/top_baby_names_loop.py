@@ -1,5 +1,6 @@
 from typing import Callable
 
+from corrected_app.configs.configs import TOP_BABY_NAMES_ABS_FILEPATH
 from corrected_app.general.data_processing import fetch_raw_data, normalize_data
 from corrected_app.general.k_means import get_random_centroids, get_clusters, get_new_centroids
 from corrected_app.top_baby_names.top_baby_names_k_means import (
@@ -27,9 +28,7 @@ def top_baby_names_loop(
     Returns:
         tuple: Tuple of final clusters and centroids
     """
-    raw_data = fetch_raw_data(
-        "c:\\Users\Lenovo\\myFiles\\nauka\\studia\\sem6\\wybrane zagadnienia sztucznej inteligencji\\laby\\analiza_danych\\raw_data\\top_baby_names_by_state_midi.txt"
-    )
+    raw_data = fetch_raw_data(TOP_BABY_NAMES_ABS_FILEPATH)
     normalized_data = normalize_data(raw_data, top_baby_names_normalize_row)
     centroids = get_random_centroids(no_of_clusters, get_random_top_baby_names_attribues)
     clusters = get_clusters(centroids, normalized_data, [1], calculate_distance_function)
