@@ -33,3 +33,19 @@ def normalize_data(raw_data: list, normalization_function: Callable[[list], list
     for row in raw_data:
         normalized_data.append(normalization_function(row))
     return normalized_data
+
+
+def denormalize_data(normalized_data: list, denormalization_function: Callable[[list], list]) -> list:
+    """Applies a denormalization function to each row in the raw data.
+
+    Args:
+        raw_data (list): A list of rows, where each row is a list of floats.
+        denormalization_function (Callable[[list], list]): A function that takes a row and returns a denormalized row.
+
+    Returns:
+        list: A list of denormalized rows.
+    """
+    denormalized_data = []
+    for row in normalized_data:
+        denormalized_data.append(denormalization_function(row))
+    return denormalized_data

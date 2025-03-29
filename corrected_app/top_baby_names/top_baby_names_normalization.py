@@ -176,3 +176,31 @@ def top_baby_names_normalize_row(raw_row: list) -> list:
     normalized_row.append(names[raw_row[3]])
     normalized_row.append(0.02 * int(raw_row[4]))
     return normalized_row
+
+
+def top_baby_names_denormalize_row(normalized_row: list) -> list:
+    """Reverses the normalization process to retrieve approximate original values.
+
+    Args:
+        normalized_row (list): A list containing normalized baby name data.
+
+    Returns:
+        list: An approximate original row where:
+            - Index 0: Closest matching state abbreviation.
+            - Index 1: Closest matching sex value.
+            - Index 2: Year restored by adding 1910.
+            - Index 3: Closest matching name.
+            - Index 4: Occurrence count approximated.
+    """
+
+    def find_closest_value(dictionary, target_value):
+        return min(dictionary, key=lambda k: abs(dictionary[k] - target_value))
+
+    original_row = []
+    original_row.append(find_closest_value(states, normalized_row[0]))
+    original_row.append(find_closest_value(sex, normalized_row[1]))
+    original_row.append(int(normalized_row[2]) + 1910)
+    original_row.append(find_closest_value(names, normalized_row[3]))
+    original_row.append(int(normalized_row[4] / 0.02))
+
+    return original_row
