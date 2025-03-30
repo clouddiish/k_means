@@ -1,5 +1,7 @@
 import math
 
+from corrected_app.utils.logger import logger
+
 
 def get_euclidean_distance(first_point: list, second_point: list, exclude_attributes_ids: list) -> float:
     """Calculates the Euclidean distance between two points, excluding specified attributes.

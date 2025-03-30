@@ -31,6 +31,8 @@ def get_avg_distance_from_centroid_in_a_cluster(
     Returns:
         float: The average distance of data points from the centroid.
     """
+    if not cluster:
+        return 0.0
     distances_sum = 0
     for datapoint in cluster:
         distance = calculate_distance_function(centroid, datapoint, exclude_attributes_ids)

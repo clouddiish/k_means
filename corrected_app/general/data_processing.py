@@ -12,8 +12,9 @@ def fetch_raw_data(filepath: str) -> list:
         list: A list of rows, where each row is represented as a list of strings.
     """
     raw_data = []
-    with open(filepath, "r") as file:
+    with open(filepath, "r", encoding="utf8") as file:
         reader = csv.reader(file)
+        next(reader)
         for row in reader:
             raw_data.append(row)
     return raw_data
