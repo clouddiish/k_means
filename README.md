@@ -1,6 +1,6 @@
 # k-means
 
-K-meas is an exercise in which two datasets are analysed using the k-means algorithm. The project involved refactoring an initial app provided as coursework to better suit multiple applications, implementing dataset-specific functions and analysing the impact of selected number of clusters, iterations and distance calculating method on the results.
+k-meas is an exercise in which two datasets are analysed using the k-means algorithm. The project involved refactoring an initial app provided as coursework to better suit multiple applications, implementing dataset-specific functions and analysing the impact of selected number of clusters, iterations and distance calculating method on the results.
 
 ## features
 
@@ -36,5 +36,5 @@ python -m corrected_app.main
 
 ### output 
 
-1. the output of running the file `corrected_app/main.py` will be printed final clusters and centroids from the selected loop.
+1. the output of running the file `corrected_app/main.py` will be printed final clusters and centroids from the selected loop
 2. the output of running the jupyter notebooks will be charts showing the impact of selected number of clusters, iterations and distance calculating method
